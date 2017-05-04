@@ -12,5 +12,5 @@ virtualenv venv
 source venv/bin/activate
 pip install -r requirements.txt
 luigid --background --port=8082 --logdir=logs
-python hello_world.py HelloWorldTask
+python hello_world.py HelloWorldTask --id=some_id
 ```

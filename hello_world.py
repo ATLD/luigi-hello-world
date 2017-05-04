@@ -10,6 +10,9 @@ class HelloTask(luigi.Task):
             hello_file.write('Hello')
             hello_file.close()
 
+    def output(self):
+        return luigi.LocalTarget('hello.txt')
+
 
 if __name__ == '__main__':
    luigi.run()

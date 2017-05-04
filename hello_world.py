@@ -1,19 +1,22 @@
-from time import sleep
-
 import luigi
+import os
 
 
 class HelloTask(luigi.Task):
     path = luigi.Parameter()
 
     def run(self):
-        sleep(60)
         with open(self.path, 'w') as hello_file:
             hello_file.write('Hello')
             hello_file.close()
 
     def output(self):
         return luigi.LocalTarget(self.path)
+
+    def requires(self):
+        return [
+            MakeDirectory(path=os.path.dirname(self.path)),
+        ]
 
 
 class WorldTask(luigi.Task):
@@ -26,6 +29,11 @@ class WorldTask(luigi.Task):
 
     def output(self):
         return luigi.LocalTarget(self.path)
+
+    def requires(self):
+        return [
+            MakeDirectory(path=os.path.dirname(self.path)),
+        ]
 
 
 class HelloWorldTask(luigi.Task):
@@ -54,6 +62,17 @@ class HelloWorldTask(luigi.Task):
     def output(self):
         path = 'results/{}/hello_world.txt'.format(self.id)
         return luigi.LocalTarget(path)
+
+
+class MakeDirectory(luigi.Task):
+    path = luigi.Parameter()
+
+    def output(self):
+        return luigi.LocalTarget(self.path)
+
+    def run(self):
+        os.makedirs(self.path)
+
 
 if __name__ == '__main__':
    luigi.run()

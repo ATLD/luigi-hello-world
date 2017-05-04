@@ -20,3 +20,4 @@ venv/
 hello.txt
 world.txt
 hello_world.txt
+results/*

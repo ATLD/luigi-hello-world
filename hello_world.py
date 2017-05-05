@@ -2,30 +2,14 @@ import luigi
 import os
 
 
-class HelloTask(luigi.Task):
+class PrintWordTask(luigi.Task):
     path = luigi.Parameter()
+    word = luigi.Parameter()
 
     def run(self):
-        with open(self.path, 'w') as hello_file:
-            hello_file.write('Hello')
-            hello_file.close()
-
-    def output(self):
-        return luigi.LocalTarget(self.path)
-
-    def requires(self):
-        return [
-            MakeDirectory(path=os.path.dirname(self.path)),
-        ]
-
-
-class WorldTask(luigi.Task):
-    path = luigi.Parameter()
-
-    def run(self):
-        with open(self.path, 'w') as world_file:
-            world_file.write('World')
-            world_file.close()
+        with open(self.path, 'w') as out_file:
+            out_file.write(self.word)
+            out_file.close()
 
     def output(self):
         return luigi.LocalTarget(self.path)
@@ -51,11 +35,13 @@ class HelloWorldTask(luigi.Task):
 
     def requires(self):
         return [
-            HelloTask(
-                path='results/{}/hello.txt'.format(self.id)
+            PrintWordTask(
+                path='results/{}/hello.txt'.format(self.id),
+                word='Hello',
             ),
-            WorldTask(
-                path='results/{}/world.txt'.format(self.id)
+            PrintWordTask(
+                path='results/{}/world.txt'.format(self.id),
+                word='World',
             ),
         ]
 

@@ -1,5 +1,6 @@
 import luigi
 import os
+from time import sleep
 
 
 class PrintWordTask(luigi.Task):
@@ -7,6 +8,7 @@ class PrintWordTask(luigi.Task):
     word = luigi.Parameter()
 
     def run(self):
+        sleep(5)
         with open(self.path, 'w') as out_file:
             out_file.write(self.word)
 

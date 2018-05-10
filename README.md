@@ -9,10 +9,12 @@ Usage:
 ```
 pipenv install
 pipenv shell
-luigid --background --port=8082 --logdir=logs
+luigid --background --logdir=logs
+# or, in another tab
+# luigid --port=8082 --logdir=logs
 python hello_world.py HelloWorldTask --id=some_id
 ```
-go and see results at:
+go and see results at default port:
 http://localhost:8082
 
 To kill the background service:

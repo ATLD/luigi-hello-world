@@ -14,3 +14,13 @@ python hello_world.py HelloWorldTask --id=some_id
 ```
 go and see results at:
 http://localhost:8082
+
+To kill the background service:
+```bash
+ps -ef | grep -i luigid
+```
+see process id
+then
+```bash
+kill -9 <process_id>
+```

@@ -7,10 +7,10 @@ It will create a file that says "Hello", another that says "World", and concaten
 Usage:
 
 ```
-pip install venv
-virtualenv venv
-source venv/bin/activate
-pip install -r requirements.txt
+pipenv install
+pipenv shell
 luigid --background --port=8082 --logdir=logs
 python hello_world.py HelloWorldTask --id=some_id
 ```
+go and see results at:
+http://localhost:8082

@@ -9,7 +9,6 @@ class PrintWordTask(luigi.Task):
     def run(self):
         with open(self.path, 'w') as out_file:
             out_file.write(self.word)
-            out_file.close()
 
     def output(self):
         return luigi.LocalTarget(self.path)
@@ -31,7 +30,6 @@ class HelloWorldTask(luigi.Task):
         with open(self.output().path, 'w') as output_file:
             content = '{} {}!'.format(hello, world)
             output_file.write(content)
-            output_file.close()
 
     def requires(self):
         return [

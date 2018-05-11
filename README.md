@@ -26,5 +26,5 @@ ps -ef | grep -i luigid
 see process id
 then
 ```bash
-kill -9 <process_id>
+kill -9 $process_id
 ```
